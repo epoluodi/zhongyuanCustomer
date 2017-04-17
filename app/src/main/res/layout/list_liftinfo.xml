@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_messagedetail_selector"
+
+
+    >
+
+
+    <TextView
+        android:id="@+id/dtxh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯型号："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/dtbh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯编号："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_below="@+id/dtxh"
+        android:id="@+id/dtzcbh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯注册编号："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_below="@+id/dtzcbh"
+        android:id="@+id/dtccbh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯出厂编号："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_below="@+id/dtccbh"
+        android:id="@+id/dtyxq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯安全年检有效期："
+        android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        android:textSize="14dp" />
+
+</RelativeLayout>

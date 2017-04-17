@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 
+import custome.zhongyuan.com.zhongyuancustomer.Fragment.AboutFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.Fragment.CustomerFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.Fragment.PushFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.FrameController.FragmentMangerX;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragmentnow;
     private PushFragrment pushFragrment;
     private CustomerFragrment customerFragrment;
+    private AboutFragrment aboutFragrment;
 
     public static FragmentMangerX fragmentMangerX; //fragment框架
 
@@ -38,10 +42,15 @@ public class MainActivity extends AppCompatActivity {
                     fragmentMangerX.ShowFragment(pushFragrment);
                     fragmentnow = pushFragrment;
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_customer:
                     fragmentMangerX.FragmentHide(fragmentnow);
                     fragmentMangerX.ShowFragment(customerFragrment);
                     fragmentnow = customerFragrment;
+                    return true;
+                case R.id.navigation_about:
+                    fragmentMangerX.FragmentHide(fragmentnow);
+                    fragmentMangerX.ShowFragment(aboutFragrment);
+                    fragmentnow = aboutFragrment;
                     return true;
 
             }
@@ -58,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentMangerX = new FragmentMangerX(getFragmentManager(), R.id.content);
         customerFragrment = new CustomerFragrment();
         pushFragrment = new PushFragrment();
-
+        aboutFragrment = new AboutFragrment();
 
         ((FragmentName) pushFragrment).SetFragmentName("pushFragrment");
         fragmentMangerX.AddFragment(pushFragrment, "pushFragrment");
@@ -67,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         ((FragmentName) customerFragrment).SetFragmentName("customerFragrment");
         fragmentMangerX.AddFragment(customerFragrment, "customerFragrment");
         fragmentMangerX.FragmentHide("customerFragrment");
+
+        ((FragmentName) aboutFragrment).SetFragmentName("aboutFragrment");
+        fragmentMangerX.AddFragment(aboutFragrment, "aboutFragrment");
+        fragmentMangerX.FragmentHide("aboutFragrment");
+
 
         fragmentMangerX.ShowFragment("pushFragrment");
         fragmentnow = pushFragrment;
@@ -79,7 +93,18 @@ public class MainActivity extends AppCompatActivity {
 // 具体可参考详细的开发指南
 // 传递的参数为ApplicationContext
         Context context = getApplicationContext();
-        XGPushManager.registerPush(context);
+        XGPushManager.registerPush(context, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object o, int i) {
+                Log.i("token",String.valueOf(o));
+
+            }
+
+            @Override
+            public void onFail(Object o, int i, String s) {
+
+            }
+        });
 
 
 
