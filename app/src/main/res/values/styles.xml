@@ -16,4 +16,8 @@
         <item name="android:background">@color/transparent</item>
         <item name="android:choiceMode">singleChoice</item>
     </style>
+    <style name="Animationpopwindows">
+        <item name="android:windowEnterAnimation">@anim/alpha</item>
+        <item name="android:windowExitAnimation">@anim/alpha_exit</item>
+    </style>
 </resources>
