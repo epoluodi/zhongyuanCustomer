@@ -19,6 +19,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import custome.zhongyuan.com.zhongyuancustomer.db.DBManager;
 
@@ -34,26 +37,34 @@ public class Common {
 //      android.intent.action.SCANRESULT
 
 
-    public static int scantype = 1;
+
     public final static Object olock = new Object();
-    public static String ServerIP;
+
     public static String ServerWCF;
     public static Context Appcontext;
     //popwindows方法
     static PopupWindow popupWindow;
     public static View popview;
-    public static String work1;
-    public static String work1name;
-    public static String work2;
-    public static String work2name;
-    public static String projectcode = "";
-    public static Boolean deviceType =false;
+
+    public static String PXID="";
+    public static String ID="";
+    public static String HTBH="";
+    public static String dwmc="";
+    public static List<Map<String,String>> mapList=new ArrayList<>();
 
     public static DBManager mainDB;
 
 
 
 
+    public static void Logout()
+    {
+        mapList.clear();
+        PXID="";
+        ID="";
+        HTBH="";
+        dwmc="";
+    }
 
     //显示popwindows
     public static void ShowPopWindow(View v, LayoutInflater inflater, String text) {
@@ -62,7 +73,7 @@ public class Common {
         popview = inflater.inflate(R.layout.popwindows, null);
 
         ((TextView) popview.findViewById(R.id.poptext)).setText(text);
-        popupWindow = new PopupWindow(popview, 360, 160);
+        popupWindow = new PopupWindow(popview, 260, 260);
         popupWindow.setOutsideTouchable(false);
         popupWindow.setFocusable(true);
         popupWindow.setAnimationStyle(R.style.Animationpopwindows);

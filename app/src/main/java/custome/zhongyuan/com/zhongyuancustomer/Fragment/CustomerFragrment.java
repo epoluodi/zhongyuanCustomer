@@ -6,7 +6,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.Map;
+
+import custome.zhongyuan.com.zhongyuancustomer.Common;
 import custome.zhongyuan.com.zhongyuancustomer.FrameController.FragmentName;
 import custome.zhongyuan.com.zhongyuancustomer.R;
 
@@ -39,18 +45,78 @@ public class CustomerFragrment extends Fragment implements FragmentName {
     }
 
 
+    private TextView cname,htbh;
 
+    private ListView listView;
+    private MyAdapter myAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_customer, container, false);
+        cname = (TextView)rootView.findViewById(R.id.cname);
+        htbh = (TextView)rootView.findViewById(R.id.htbh);
+        listView = (ListView)rootView.findViewById(R.id.list);
+        cname.setText(Common.dwmc);
+        htbh.setText(Common.HTBH);
 
+
+        myAdapter=new MyAdapter();
+        listView.setAdapter(myAdapter);
 
         return rootView;
 
     }
 
+
+
+
+    private class MyAdapter extends BaseAdapter
+    {
+        private TextView dtxh,dtpp,dtwz,dtlx,dtzcbh,dtccbh;
+
+        @Override
+        public int getCount() {
+            return Common.mapList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return Common.mapList.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
+            view = getActivity().getLayoutInflater().inflate(R.layout.list_liftinfo,null);
+            dtxh = (TextView)view.findViewById(R.id.dtxh);
+            dtpp = (TextView)view.findViewById(R.id.dtpp);
+            dtwz = (TextView)view.findViewById(R.id.dtwz);
+            dtlx = (TextView)view.findViewById(R.id.dtlx);
+            dtzcbh = (TextView)view.findViewById(R.id.dtzcbh);
+            dtccbh = (TextView)view.findViewById(R.id.dtccbh);
+
+            Map<String,String> map=Common.mapList.get(i);
+            dtxh.setText("电梯序号:" + map.get("dtxh"));
+            dtpp.setText("品牌:" + map.get("pp"));
+            dtwz.setText("位置:" + map.get("wz"));
+            dtlx.setText("电梯类型:" + map.get("dtlx"));
+            dtzcbh.setText("电梯注册编号:" + map.get("dtzch"));
+            dtccbh.setText("电梯出厂编号:" +  map.get("ccbh"));
+
+
+            if (i % 2 ==0)
+            {
+                view.setBackgroundColor(getActivity().getResources().getColor(R.color.blackTransparent1));
+            }
+            return view;
+        }
+    }
 
 
 
