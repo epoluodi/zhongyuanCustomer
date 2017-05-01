@@ -36,6 +36,7 @@
             android:value="ACR7857IQP3Y" />
 
         <activity
+            android:launchMode="singleTop"
             android:name=".MainActivity"
             android:label="@string/app_name">
 

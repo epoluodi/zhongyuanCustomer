@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import custome.zhongyuan.com.zhongyuancustomer.WebService.WebThreadDo;
+import custome.zhongyuan.com.zhongyuancustomer.WebService.Webservice;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Common.ServerWCF = "Http://192.168.1.10:9229/";
+        Common.ServerWCF = "Http://192.168.0.10:9229/";
 
         buttonlogin = (Button) findViewById(R.id.buttonlogin);
         user = (EditText) findViewById(R.id.user);
@@ -68,68 +70,96 @@ public class LoginActivity extends AppCompatActivity {
 
             Common.ShowPopWindow(buttonlogin, getLayoutInflater(), "登录..");
 
-            PropertyInfo[] propertyInfos = new PropertyInfo[2];
-            PropertyInfo propertyInfo = new PropertyInfo();
-            propertyInfo.setName("pxid");
-            propertyInfo.setValue(user.getText().toString());
-            propertyInfos[0] = propertyInfo;
-
-            propertyInfo = new PropertyInfo();
-            propertyInfo.setName("pwd");
-            propertyInfo.setValue(pwd.getText().toString());
-            propertyInfos[1] = propertyInfo;
-            WebThreadDo webThreadDo = new WebThreadDo(propertyInfos, "M_Login");
-            webThreadDo.requstWebinterfaceForString(true);
-            String r = webThreadDo.amessage.obj.toString();
-            Log.i("结果", r);
-            Common.CLosePopwindow();
-            if (r.equals("-1") || r.equals("1")) {
-                Toast.makeText(LoginActivity.this, "登录失败，请重新尝试", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            try {
-
-                JSONObject jsonObject = new JSONObject(r);
-
-                Common.PXID = user.getText().toString();
-                setKeyShareVar("user", user.getText().toString());
-                setKeyShareVar("pwd", pwd.getText().toString());
-
-                Common.ID = jsonObject.getString("id");
-                Common.HTBH = jsonObject.getString("HTBH");
-                Common.dwmc = jsonObject.getString("dwmc");
-
-
-                JSONArray jsonArray=jsonObject.getJSONArray("data");
-
-                for (int i=0;i<jsonArray.length();i++)
-                {
-                    Map<String,String> map=new HashMap<>();
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    map.put("dtzch",jsonObject1.getString("dtzch"));
-                    map.put("dtxh",jsonObject1.getString("dtxh"));
-                    map.put("dtlx",jsonObject1.getString("dtlx"));
-                    map.put("ccbh",jsonObject1.getString("ccbh"));
-                    map.put("pp",jsonObject1.getString("pp"));
-                    map.put("wz",jsonObject1.getString("wz"));
-                    Common.mapList.add(map);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Login();
                 }
+            }).start();
 
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(LoginActivity.this, "登录失败，请重新尝试", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
 
         }
     };
 
+    private void Login()
+    {
+        PropertyInfo[] propertyInfos = new PropertyInfo[2];
+        PropertyInfo propertyInfo = new PropertyInfo();
+        propertyInfo.setName("pxid");
+        propertyInfo.setValue(user.getText().toString());
+        propertyInfos[0] = propertyInfo;
+
+        propertyInfo = new PropertyInfo();
+        propertyInfo.setName("pwd");
+        propertyInfo.setValue(pwd.getText().toString());
+        propertyInfos[1] = propertyInfo;
+        Webservice webservice=new Webservice(Common.ServerWCF,10000);
+        String r = webservice.PDA_GetInterFaceForStringNew(propertyInfos,"M_Login");
+
+        Log.i("结果", r);
+
+        if (r.equals("-1") || r.equals("1")) {
+            handler.sendEmptyMessage(-1);
+            return;
+        }
+
+        try {
+
+            JSONObject jsonObject = new JSONObject(r);
+
+            Common.PXID = user.getText().toString();
+            setKeyShareVar("user", user.getText().toString());
+            setKeyShareVar("pwd", pwd.getText().toString());
+
+            Common.ID = jsonObject.getString("id");
+            Common.HTBH = jsonObject.getString("HTBH");
+            Common.dwmc = jsonObject.getString("dwmc");
+
+
+            JSONArray jsonArray=jsonObject.getJSONArray("data");
+
+            for (int i=0;i<jsonArray.length();i++)
+            {
+                Map<String,String> map=new HashMap<>();
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                map.put("dtzch",jsonObject1.getString("dtzch"));
+                map.put("dtxh",jsonObject1.getString("dtxh"));
+                map.put("dtlx",jsonObject1.getString("dtlx"));
+                map.put("ccbh",jsonObject1.getString("ccbh"));
+                map.put("pp",jsonObject1.getString("pp"));
+                map.put("wz",jsonObject1.getString("wz"));
+                Common.mapList.add(map);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(LoginActivity.this, "登录失败，请重新尝试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+       handler.sendEmptyMessage(0);
+    }
+
+    Handler handler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Common.CLosePopwindow();
+            switch (msg.what)
+            {
+                case -1:
+                    Toast.makeText(LoginActivity.this, "登录失败，请重新尝试", Toast.LENGTH_SHORT).show();
+                    break;
+                case 0:
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+        }
+    };
     @Override
     protected void onResume() {
         super.onResume();
