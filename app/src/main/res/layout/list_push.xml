@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_messagedetail_selector"
+
+
+    >
+
+
+    <TextView
+        android:id="@+id/dtxh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯序号："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+
+
+    <TextView
+        android:id="@+id/lifttype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="电梯类型："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:layout_below="@+id/dtxh"
+        android:id="@+id/oper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="检修人："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:layout_below="@+id/oper"
+        android:id="@+id/stdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="开始时间："
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <TextView
+        android:layout_below="@+id/stdt"
+        android:id="@+id/endt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="结束时间："
+        android:textColor="@color/black"
+
+        android:layout_marginBottom="10sp"
+        android:textSize="14dp" />
+
+
+
+</RelativeLayout>
