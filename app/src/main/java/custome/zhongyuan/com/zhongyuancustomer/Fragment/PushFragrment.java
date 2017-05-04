@@ -86,9 +86,9 @@ public class PushFragrment extends Fragment implements FragmentName {
             public void run() {
 
                 try{
-                    handler.sendEmptyMessage(1);
-                    Thread.sleep(200);
 
+                    Thread.sleep(800);
+                    handler.sendEmptyMessage(1);
                     PropertyInfo[] propertyInfos = new PropertyInfo[1];
                     PropertyInfo propertyInfo = new PropertyInfo();
                     propertyInfo.setName("pxid");
@@ -129,17 +129,18 @@ public class PushFragrment extends Fragment implements FragmentName {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            Common.CLosePopwindow();
+
             switch (msg.what)
             {
                 case 1:
                     Common.ShowPopWindow(listView,getActivity().getLayoutInflater(),"读取...");
                     break;
                 case -1:
+                    Common.CLosePopwindow();
                     Toast.makeText(getActivity(), "加载数据失败,请退出重新尝试", Toast.LENGTH_SHORT).show();
                     break;
                 case 0:
-
+                    Common.CLosePopwindow();
                     break;
             }
 

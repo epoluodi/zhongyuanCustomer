@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -129,10 +130,9 @@ public class MainActivity extends AppCompatActivity {
         XGPushManager.registerPush(context, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {
-                Log.i("token",String.valueOf(o));
-                Common.ShowPopWindow(navigation,getLayoutInflater(),"加载...");
+                Log.i("token1",String.valueOf(o));
 
-                PropertyInfo[] propertyInfos = new PropertyInfo[3];
+                PropertyInfo[] propertyInfos = new PropertyInfo[4];
                 PropertyInfo propertyInfo = new PropertyInfo();
                 propertyInfo.setName("token");
                 propertyInfo.setValue(String.valueOf(o));
@@ -145,15 +145,26 @@ public class MainActivity extends AppCompatActivity {
 
                 propertyInfo = new PropertyInfo();
                 propertyInfo.setName("pxid");
-                propertyInfo.setValue("123");
+                propertyInfo.setValue(Common.PXID);
                 propertyInfos[2] = propertyInfo;
+
+
+                TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+                String szImei = TelephonyMgr.getDeviceId();
+
+
+                propertyInfo = new PropertyInfo();
+                propertyInfo.setName("deviceid");
+                propertyInfo.setValue(szImei);
+                propertyInfos[3] = propertyInfo;
+
 
                 WebThreadDo webThreadDo=new WebThreadDo(propertyInfos,"M_UploadToken");
                 webThreadDo.requstWebinterfaceForString(true);
 
                 Log.i("结果",webThreadDo.amessage.obj.toString());
 
-                Common.CLosePopwindow();
+
             }
 
             @Override
