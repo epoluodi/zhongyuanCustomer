@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         style="@style/List"
         android:id="@+id/list"
-        android:visibility="invisible"
+
         />
 
     <TextView

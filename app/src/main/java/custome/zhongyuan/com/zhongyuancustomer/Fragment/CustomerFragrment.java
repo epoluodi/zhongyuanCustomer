@@ -45,7 +45,7 @@ public class CustomerFragrment extends Fragment implements FragmentName {
     }
 
 
-    private TextView cname,htbh;
+    private TextView cname,htbh,jssj;
 
     private ListView listView;
     private MyAdapter myAdapter;
@@ -57,9 +57,10 @@ public class CustomerFragrment extends Fragment implements FragmentName {
         cname = (TextView)rootView.findViewById(R.id.cname);
         htbh = (TextView)rootView.findViewById(R.id.htbh);
         listView = (ListView)rootView.findViewById(R.id.list);
-        cname.setText(Common.dwmc);
+        jssj=(TextView)rootView.findViewById(R.id.jssj);
+        cname.setText("(" + Common.PXID + ")" + Common.dwmc);
         htbh.setText(Common.HTBH);
-
+        jssj.setText(Common.jssj);
 
         myAdapter=new MyAdapter();
         listView.setAdapter(myAdapter);
@@ -107,7 +108,7 @@ public class CustomerFragrment extends Fragment implements FragmentName {
             dtwz.setText("位置:" + map.get("wz"));
             dtlx.setText("电梯类型:" + map.get("dtlx"));
             dtzcbh.setText("电梯注册编号:" + map.get("dtzch"));
-            dtccbh.setText("电梯出厂编号:" +  map.get("ccbh"));
+            dtccbh.setText("电梯检验有效期:" +  map.get("jcrq"));
 
 
             if (i % 2 ==0)

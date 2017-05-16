@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import org.ksoap2.serialization.PropertyInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,35 +59,45 @@ public class PushFragrment extends Fragment implements FragmentName {
     }
 
 
-
-
     public PushFragrment() {
 
 
     }
 
 
-    private List<Map<String,String>> list;
+    private List<Map<String, String>> list;
 
     private ListView listView;
-    private TextView textView;
-
+    private TextView tip;
+    private MyAdapter myAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_push, container, false);
 
-        listView = (ListView)rootView.findViewById(R.id.list);
-        textView = (TextView)rootView.findViewById(R.id.tip);
+        listView = (ListView) rootView.findViewById(R.id.list);
+        tip = (TextView) rootView.findViewById(R.id.tip);
 
-        list  = new ArrayList<>();
+        list = new ArrayList<>();
+        myAdapter=new MyAdapter();
+        listView.setAdapter(myAdapter);
 
+
+        return rootView;
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        list.clear();
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                try{
+                try {
 
                     Thread.sleep(800);
                     handler.sendEmptyMessage(1);
@@ -94,46 +106,66 @@ public class PushFragrment extends Fragment implements FragmentName {
                     propertyInfo.setName("pxid");
                     propertyInfo.setValue(Common.PXID);
                     propertyInfos[0] = propertyInfo;
-                    Webservice webservice=new Webservice(Common.ServerWCF,10000);
-                    String r = webservice.PDA_GetInterFaceForStringNew(propertyInfos,"M_getPushInfo");
+                    Webservice webservice = new Webservice(Common.ServerWCF, 10000);
+                    String r = webservice.PDA_GetInterFaceForStringNew(propertyInfos, "M_getPushInfo");
 
                     if (r.equals("-1") || r.equals("1")) {
                         handler.sendEmptyMessage(-1);
                         return;
                     }
 
-                    try{
-                        JSONArray jsonArray=new JSONArray(r);
-                        
+                    try {
+                        JSONArray jsonArray = new JSONArray(r);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            Map<String, String> map = new HashMap<String, String>();
+                            map.put("oper", jsonObject.getString("oper"));
+                            map.put("liftname", jsonObject.getString("liftname"));
 
-                    }
-                    catch (Exception e)
-                    {
+                            if (jsonObject.getString("tabletype").equals("1"))
+                            {
+                                map.put("tabletype","乘客及载货电梯行了维护保养");
+                            }else if (jsonObject.getString("tabletype").equals("2"))
+                            {
+                                map.put("tabletype","杂物电梯行了维护保养");
+                            }else if (jsonObject.getString("tabletype").equals("3"))
+                            {
+                                map.put("tabletype","扶梯行了维护保养");
+                            }else if (jsonObject.getString("tabletype").equals("4"))
+                            {
+                                map.put("tabletype","液压电梯行了维护保养");
+                            }else if (jsonObject.getString("tabletype").equals("5"))
+                            {
+                                map.put("tabletype","电梯进行了紧急维护保养");
+                            }
+                            map.put("tabletype", jsonObject.getString("tabletype"));
+                            map.put("pushid", jsonObject.getString("pushid"));
+                            list.add(map);
+                        }
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     handler.sendEmptyMessage(0);
-                }catch (Exception e)
-                {e.printStackTrace();}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
 
-        return rootView;
 
     }
 
-
-    Handler handler=new Handler()
-    {
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
 
-            switch (msg.what)
-            {
+            switch (msg.what) {
                 case 1:
-                    Common.ShowPopWindow(listView,getActivity().getLayoutInflater(),"读取...");
+                    Common.ShowPopWindow(listView, getActivity().getLayoutInflater(), "读取...");
                     break;
                 case -1:
                     Common.CLosePopwindow();
@@ -141,6 +173,15 @@ public class PushFragrment extends Fragment implements FragmentName {
                     break;
                 case 0:
                     Common.CLosePopwindow();
+
+                    myAdapter.notifyDataSetChanged();
+                    if (list.size() > 0) {
+                        tip.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        tip.setVisibility(View.VISIBLE);
+                    }
                     break;
             }
 
@@ -148,7 +189,44 @@ public class PushFragrment extends Fragment implements FragmentName {
     };
 
 
+    private class MyAdapter extends BaseAdapter {
+        private TextView info;
 
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return list.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+
+            view = getActivity().getLayoutInflater().inflate(R.layout.list_push, null);
+            info = (TextView) view.findViewById(R.id.info);
+
+
+            Map<String, String> map = list.get(i);
+            String strinfo = String.format("尊敬的客户您好!\n     我公司 %1$s " +
+                    "人员对贵单位 %2$s 号$3$s，请您对他们此次服务进行评价！！ \n   " +
+                    "谢谢", map.get("oper"), map.get("liftname"),map.get("tabletype"));
+            info.setText(strinfo);
+
+
+            if (i % 2 == 0) {
+                view.setBackgroundColor(getActivity().getResources().getColor(R.color.blackTransparent1));
+            }
+            return view;
+        }
+    }
 
 
 }

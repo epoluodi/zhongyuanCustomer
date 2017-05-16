@@ -23,9 +23,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/Xg_sdk_v3.0_20170301_1733.jar')
+    compile files('libs/ksoap2-android-assembly-2.6.5-jar-with-dependencies.jar')
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.android.support:support-vector-drawable:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile files('libs/ksoap2-android-assembly-2.6.5-jar-with-dependencies.jar')
 }

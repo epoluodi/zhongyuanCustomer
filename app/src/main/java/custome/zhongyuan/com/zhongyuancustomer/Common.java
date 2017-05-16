@@ -50,6 +50,7 @@ public class Common {
     public static String ID="";
     public static String HTBH="";
     public static String dwmc="";
+    public static String jssj="";
     public static List<Map<String,String>> mapList=new ArrayList<>();
 
     public static DBManager mainDB;

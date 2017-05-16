@@ -87,7 +87,7 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:text="电梯出厂编号："
+        android:text="电梯检验有效期："
         android:textColor="@color/black"
 
         android:layout_marginBottom="10sp"

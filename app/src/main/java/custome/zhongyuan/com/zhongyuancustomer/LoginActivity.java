@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Common.ServerWCF = "Http://192.168.0.10:9229/";
+        Common.ServerWCF = "Http://vc1818.88ip.or:9229/";//vc1818.88ip.org
 
         buttonlogin = (Button) findViewById(R.id.buttonlogin);
         user = (EditText) findViewById(R.id.user);
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
             Common.ID = jsonObject.getString("id");
             Common.HTBH = jsonObject.getString("HTBH");
             Common.dwmc = jsonObject.getString("dwmc");
-
+            Common.jssj = jsonObject.getString("jssj");
 
             JSONArray jsonArray=jsonObject.getJSONArray("data");
 
@@ -128,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                 map.put("ccbh",jsonObject1.getString("ccbh"));
                 map.put("pp",jsonObject1.getString("pp"));
                 map.put("wz",jsonObject1.getString("wz"));
+                map.put("jcrq",jsonObject1.getString("jcrq"));
                 Common.mapList.add(map);
             }
 
