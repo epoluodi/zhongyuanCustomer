@@ -121,12 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 开启logcat输出，方便debug，发布时请关闭
-        XGPushConfig.enableDebug(this, true);
+        XGPushConfig.enableDebug(this, false);
         // 如果需要知道注册是否成功，请使用registerPush(getApplicationContext(), XGIOperateCallback)带callback版本
 // 如果需要绑定账号，请使用registerPush(getApplicationContext(),account)版本
 // 具体可参考详细的开发指南
 // 传递的参数为ApplicationContext
         Context context = getApplicationContext();
+
         XGPushManager.registerPush(context, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object o, int i) {

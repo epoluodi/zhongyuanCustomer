@@ -35,6 +35,7 @@ import custome.zhongyuan.com.zhongyuancustomer.Common;
 import custome.zhongyuan.com.zhongyuancustomer.FrameController.FragmentName;
 import custome.zhongyuan.com.zhongyuancustomer.LoginActivity;
 import custome.zhongyuan.com.zhongyuancustomer.MainActivity;
+import custome.zhongyuan.com.zhongyuancustomer.PJActivity;
 import custome.zhongyuan.com.zhongyuancustomer.R;
 import custome.zhongyuan.com.zhongyuancustomer.WebService.Webservice;
 
@@ -83,10 +84,23 @@ public class PushFragrment extends Fragment implements FragmentName {
         myAdapter=new MyAdapter();
         listView.setAdapter(myAdapter);
 
-
+        listView.setOnItemClickListener(onItemClickListener);
         return rootView;
 
     }
+
+    AdapterView.OnItemClickListener onItemClickListener=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Map<String, String> map = list.get(i);
+
+
+            Intent intent=new Intent(getActivity(), PJActivity.class);
+            intent.putExtra("pushid",map.get("pushid"));
+            startActivity(intent);
+        }
+    };
+
 
     @Override
     public void onResume() {
@@ -216,8 +230,8 @@ public class PushFragrment extends Fragment implements FragmentName {
 
             Map<String, String> map = list.get(i);
             String strinfo = String.format("尊敬的客户您好!\n     我公司 %1$s " +
-                    "人员对贵单位 %2$s 号$3$s，请您对他们此次服务进行评价！！ \n   " +
-                    "谢谢", map.get("oper"), map.get("liftname"),map.get("tabletype"));
+                    "人员对贵单位电梯进行维护保养，请您对他们此次服务进行评价！！ \n   " +
+                    "谢谢", map.get("oper"));
             info.setText(strinfo);
 
 

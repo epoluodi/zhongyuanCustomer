@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Common.ServerWCF = "Http://vc1818.88ip.or:9229/";//vc1818.88ip.org
+        Common.ServerWCF = "Http://vc1818.88ip.org:9229/";//vc1818.88ip.org
 
         buttonlogin = (Button) findViewById(R.id.buttonlogin);
         user = (EditText) findViewById(R.id.user);

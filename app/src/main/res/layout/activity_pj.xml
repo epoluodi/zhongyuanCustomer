@@ -8,5 +8,82 @@
     tools:context="custome.zhongyuan.com.zhongyuancustomer.PJActivity">
 
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="您好请对本次服务进行评价"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/title"
+        android:layout_margin="16dp"
+        android:background="@color/blackTransparent4" />
+
+    <RadioGroup
+        android:id="@+id/pjradio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="非常满意"
+            android:textColor="@color/green1"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="满意"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="不满意"
+            android:textColor="@color/red1"
+            android:textSize="20dp" />
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/pjradio"
+        android:layout_margin="16dp"
+        android:gravity="start"
+        android:hint="请评价本次服务"
+        android:maxLines="10"
+        android:background="@drawable/pj_edit"
+        android:padding="5dp"
+android:id="@+id/editpj"
+        />
+
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/buttonclickstyle"
+        android:imeOptions="actionDone"
+        android:text="提交评价"
+        android:textSize="30dp"
+        android:layout_below="@+id/editpj"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
