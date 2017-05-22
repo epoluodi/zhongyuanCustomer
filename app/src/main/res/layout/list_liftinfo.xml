@@ -25,7 +25,7 @@
         android:id="@+id/dtpp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/dtwz"
+       android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
@@ -44,6 +44,7 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:text="电梯位置："
+        android:visibility="gone"
         android:textColor="@color/black"
         android:textSize="14dp" />
 

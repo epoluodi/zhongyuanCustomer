@@ -103,8 +103,8 @@ public class CustomerFragrment extends Fragment implements FragmentName {
             dtccbh = (TextView)view.findViewById(R.id.dtccbh);
 
             Map<String,String> map=Common.mapList.get(i);
-            dtxh.setText("电梯序号:" + map.get("dtxh"));
-            dtpp.setText("品牌:" + map.get("pp"));
+            dtxh.setText("电梯编号:" + map.get("dtbh"));
+            dtpp.setText("救援识别号:" + map.get("jyNum"));
             dtwz.setText("位置:" + map.get("wz"));
             dtlx.setText("电梯类型:" + map.get("dtlx"));
             dtzcbh.setText("电梯注册编号:" + map.get("dtzch"));

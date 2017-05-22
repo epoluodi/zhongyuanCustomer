@@ -46,19 +46,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/t1"
                 android:text="A05"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/t1"
 
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/jssj"
                 android:text="合同有效期:"
                 android:textSize="12dp" />
 
@@ -66,13 +66,13 @@
                 android:id="@+id/jssj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/t1"
-                android:layout_marginLeft="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/t2"
+
                 android:text="A05"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="12dp" />
 
 
         </RelativeLayout>

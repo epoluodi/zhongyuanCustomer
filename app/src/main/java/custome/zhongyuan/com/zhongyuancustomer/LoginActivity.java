@@ -123,12 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String,String> map=new HashMap<>();
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                 map.put("dtzch",jsonObject1.getString("dtzch"));
-                map.put("dtxh",jsonObject1.getString("dtxh"));
+                map.put("dtbh",jsonObject1.getString("dtbh"));
                 map.put("dtlx",jsonObject1.getString("dtlx"));
                 map.put("ccbh",jsonObject1.getString("ccbh"));
                 map.put("pp",jsonObject1.getString("pp"));
                 map.put("wz",jsonObject1.getString("wz"));
                 map.put("jcrq",jsonObject1.getString("jcrq"));
+                map.put("jyNum",jsonObject1.getString("jyNum"));
                 Common.mapList.add(map);
             }
 
