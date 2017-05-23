@@ -84,7 +84,7 @@
         android:autoLink="web"
         android:gravity="center_horizontal"
         android:linksClickable="true"
-        android:text="保修与投诉热线 400-828-5553"
+        android:text="报修与投诉热线:400-828-5553"
         android:textColorLink="@color/red"
         android:layout_above="@+id/txtlink"
         android:textColor="@color/red"
