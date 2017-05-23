@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">中远巡检</string>
+    <string name="app_name">中远电梯</string>
     <string name="title_home">巡检信息</string>
     <string name="title_customer">客户信息</string>
     <string name="title_about">关于</string>

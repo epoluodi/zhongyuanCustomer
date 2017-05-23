@@ -230,7 +230,7 @@ public class PushFragrment extends Fragment implements FragmentName {
 
             Map<String, String> map = list.get(i);
             String strinfo = String.format("尊敬的客户您好!\n     我公司 %1$s " +
-                    "人员对贵单位电梯进行维护保养，请您对他们此次服务进行评价！！ \n   " +
+                    "对贵单位电梯进行了维护保养，请您对他们此次服务进行评价！！ \n   " +
                     "谢谢", map.get("oper"));
             info.setText(strinfo);
 

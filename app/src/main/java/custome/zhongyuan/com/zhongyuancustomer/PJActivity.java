@@ -52,9 +52,11 @@ public class PJActivity extends AppCompatActivity {
 
             if (radioButton1.isChecked()) {
                 score = 3;
-            } else if (radioButton2.isChecked()) {
+            }
+            if (radioButton2.isChecked()) {
                 score = 2;
-            } else if (radioButton3.isChecked()) {
+            }
+            if (radioButton3.isChecked()) {
                 score = 1;
             }
 

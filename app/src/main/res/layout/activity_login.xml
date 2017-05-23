@@ -75,7 +75,20 @@
         android:text="Ver 1.0"
         android:textColor="@color/blackTransparent9" />
 
+    <TextView
+        android:id="@+id/txtphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
+        android:layout_marginBottom="2dp"
+        android:autoLink="web"
+        android:gravity="center_horizontal"
+        android:linksClickable="true"
+        android:text="保修与投诉热线 400-828-5553"
+        android:textColorLink="@color/red"
+        android:layout_above="@+id/txtlink"
+        android:textColor="@color/red"
+        />
     <TextView
         android:id="@+id/txtlink"
         android:layout_width="match_parent"
