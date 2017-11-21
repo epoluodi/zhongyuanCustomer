@@ -74,7 +74,7 @@ public class CustomerFragrment extends Fragment implements FragmentName {
 
     private class MyAdapter extends BaseAdapter
     {
-        private TextView dtxh,dtpp,dtwz,dtlx,dtzcbh,dtccbh;
+        private TextView dtxh,dtpp,dtwz,dtlx,dtzcbh,dtccbh,nextwbdt;
 
         @Override
         public int getCount() {
@@ -101,6 +101,7 @@ public class CustomerFragrment extends Fragment implements FragmentName {
             dtlx = (TextView)view.findViewById(R.id.dtlx);
             dtzcbh = (TextView)view.findViewById(R.id.dtzcbh);
             dtccbh = (TextView)view.findViewById(R.id.dtccbh);
+            nextwbdt = (TextView)view.findViewById(R.id.nextwbdt);
 
             Map<String,String> map=Common.mapList.get(i);
             dtxh.setText("电梯编号:" + map.get("dtbh"));
@@ -109,7 +110,7 @@ public class CustomerFragrment extends Fragment implements FragmentName {
             dtlx.setText("电梯类型:" + map.get("dtlx"));
             dtzcbh.setText("电梯注册编号:" + map.get("dtzch"));
             dtccbh.setText("电梯检验有效期:" +  map.get("jcrq"));
-
+            nextwbdt.setText("下次保养时间:" +  map.get("nextwbdt"));
 
             if (i % 2 ==0)
             {

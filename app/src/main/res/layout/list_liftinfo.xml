@@ -25,12 +25,12 @@
         android:id="@+id/dtpp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="58dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:ellipsize="end"
-        android:text="品牌："
+        android:text="救援号:112311213："
         android:textColor="@color/black"
         android:textSize="14dp" />
 
@@ -44,16 +44,16 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:text="电梯位置："
-        android:visibility="gone"
         android:textColor="@color/black"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:visibility="gone" />
 
 
     <TextView
-        android:layout_below="@+id/dtxh"
         android:id="@+id/dtlx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/dtxh"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="8dp"
@@ -63,12 +63,26 @@
         android:textColor="@color/black"
         android:textSize="14dp" />
 
+    <TextView
+        android:id="@+id/nextwbdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/dtxh"
+        android:layout_alignLeft="@+id/dtpp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:text="下次维保时间：2017-11-19"
+        android:textColor="@color/red1"
+        android:textSize="14dp" />
+
 
     <TextView
-        android:layout_below="@+id/dtlx"
         android:id="@+id/dtzcbh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/dtlx"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="8dp"
@@ -79,21 +93,20 @@
         android:textSize="14dp" />
 
     <TextView
-        android:layout_below="@+id/dtzcbh"
         android:id="@+id/dtccbh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/dtzcbh"
+        android:layout_marginBottom="10sp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:ellipsize="end"
         android:text="电梯检验有效期："
+
         android:textColor="@color/black"
-
-        android:layout_marginBottom="10sp"
         android:textSize="14dp" />
-
 
 
 </RelativeLayout>

@@ -130,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 map.put("wz",jsonObject1.getString("wz"));
                 map.put("jcrq",jsonObject1.getString("jcrq"));
                 map.put("jyNum",jsonObject1.getString("jyNum"));
+                map.put("nextwbdt",jsonObject1.getString("nextwbdt"));
                 Common.mapList.add(map);
             }
 

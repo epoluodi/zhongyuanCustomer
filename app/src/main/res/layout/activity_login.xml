@@ -72,7 +72,7 @@
 
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:text="Ver 1.0"
+        android:text="Ver 1.1"
         android:textColor="@color/blackTransparent9" />
 
     <TextView

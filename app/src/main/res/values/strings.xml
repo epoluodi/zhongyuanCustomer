@@ -2,5 +2,7 @@
     <string name="app_name">中远电梯</string>
     <string name="title_home">巡检信息</string>
     <string name="title_customer">客户信息</string>
-    <string name="title_about">关于</string>
+    <string name="title_Sign">授权签名</string>
+    <string name="title_web">维保下载</string>
+    <string name="title_chat">联系中远</string>
 </resources>

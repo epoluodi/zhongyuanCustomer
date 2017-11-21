@@ -3,6 +3,8 @@ package custome.zhongyuan.com.zhongyuancustomer;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,8 +14,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
@@ -21,7 +21,7 @@ import com.tencent.android.tpush.XGPushManager;
 
 import org.ksoap2.serialization.PropertyInfo;
 
-import custome.zhongyuan.com.zhongyuancustomer.Fragment.AboutFragrment;
+import custome.zhongyuan.com.zhongyuancustomer.Fragment.SignFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.Fragment.CustomerFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.Fragment.PushFragrment;
 import custome.zhongyuan.com.zhongyuancustomer.FrameController.FragmentMangerX;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragmentnow;
     private PushFragrment pushFragrment;
     private CustomerFragrment customerFragrment;
-    private AboutFragrment aboutFragrment;
+    private SignFragrment signFragrment;
 
     private FragmentMangerX fragmentMangerX; //fragment框架
     private BottomNavigationView navigation;
@@ -55,11 +55,19 @@ public class MainActivity extends AppCompatActivity {
                     fragmentMangerX.ShowFragment(customerFragrment);
                     fragmentnow = customerFragrment;
                     return true;
-//                case R.id.navigation_about:
-//                    fragmentMangerX.FragmentHide(fragmentnow);
-//                    fragmentMangerX.ShowFragment(aboutFragrment);
-//                    fragmentnow = aboutFragrment;
-//                    return true;
+                case R.id.navigation_sign:
+                case R.id.navigation_chat:
+                    fragmentMangerX.FragmentHide(fragmentnow);
+                    fragmentMangerX.ShowFragment(signFragrment);
+                    fragmentnow = signFragrment;
+                    return true;
+                case R.id.navigation_webdownload:
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri content_url = Uri.parse("http://vc1818.88ip.org:666/");
+                    intent.setData(content_url);
+                    startActivity(intent);
+                    return true;
 
             }
             return false;
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentMangerX = new FragmentMangerX(getFragmentManager(), R.id.content);
         customerFragrment = new CustomerFragrment();
         pushFragrment = new PushFragrment();
-        aboutFragrment = new AboutFragrment();
+        signFragrment = new SignFragrment();
 
         ((FragmentName) pushFragrment).SetFragmentName("pushFragrment");
         fragmentMangerX.AddFragment(pushFragrment, "pushFragrment");
@@ -111,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentMangerX.AddFragment(customerFragrment, "customerFragrment");
         fragmentMangerX.FragmentHide("customerFragrment");
 
-        ((FragmentName) aboutFragrment).SetFragmentName("aboutFragrment");
-        fragmentMangerX.AddFragment(aboutFragrment, "aboutFragrment");
-        fragmentMangerX.FragmentHide("aboutFragrment");
+        ((FragmentName) signFragrment).SetFragmentName("signFragrment");
+        fragmentMangerX.AddFragment(signFragrment, "signFragrment");
+        fragmentMangerX.FragmentHide("signFragrment");
 
 
         fragmentMangerX.ShowFragment("pushFragrment");

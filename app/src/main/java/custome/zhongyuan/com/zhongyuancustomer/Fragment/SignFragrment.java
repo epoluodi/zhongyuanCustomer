@@ -14,7 +14,7 @@ import custome.zhongyuan.com.zhongyuancustomer.R;
 /**
  * Created by Stereo on 16/7/12.
  */
-public class AboutFragrment extends Fragment implements FragmentName {
+public class SignFragrment extends Fragment implements FragmentName {
 
 
     private String Fragment_Name = "";
@@ -33,7 +33,7 @@ public class AboutFragrment extends Fragment implements FragmentName {
 
 
 
-    public AboutFragrment() {
+    public SignFragrment() {
 
 
     }
@@ -44,7 +44,7 @@ public class AboutFragrment extends Fragment implements FragmentName {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sign, container, false);
 
 
         return rootView;
